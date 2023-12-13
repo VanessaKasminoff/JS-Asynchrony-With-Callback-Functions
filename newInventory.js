@@ -1,4 +1,14 @@
-function newInventory(){
+function addToInventory (item, src) {
+    item.addEventListener('click', function () {
+      item.remove()
+      let inventoryItem = document.createElement('img')
+      inventoryItem.src = src
+      returnedInventory.append(inventoryItem)
+    })
+    console.log(addToInventory)
+  }
+  
+  function newInventory(){
     let inventory = document.createElement('div')
     inventory.style.width = '100%'
     inventory.style.height = '100px'
@@ -10,4 +20,4 @@ function newInventory(){
     inventory.style.backgroundColor = 'brown'
     document.body.append(inventory)
     return inventory
-}
+  }

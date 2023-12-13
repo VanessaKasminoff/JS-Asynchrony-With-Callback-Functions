@@ -1,55 +1,71 @@
 function newNonPlayableCharacter(x, y) {
-    let element = newImage('assets/red-character/static.gif')
-    element.style.zIndex = 1;
+    let img = newImage('assets/red-character/static.gif')
+    img.style.zIndex = 1;
 
     let direction = null;
 
     function moveCharacter() {
         if (direction === 'west') {
-            x -= 1
+            x--
         }
         if (direction === 'north') {
-            y += 1
+            y++
         }
         if (direction === 'east') {
-            x += 1
+            x++
         }
         if (direction === 'south') {
-            y -= 1
+            y--
         }
-        element.style.left = x + 'px'
-        element.style.bottom = y + 'px'
+        img.style.left = x + 'px'
+        img.style.bottom = y + 'px'
     }
 
     setInterval(moveCharacter, 1)
 
-    function walkEast() {
+function wait(time, callback) {
+    setTimeout(() => {
+        if (time) {
+            stop();
+        }
+        if (callback) {
+            callback();
+        }
+    }, time)
+}
+
+    function walkEast(time, callback) {
         direction = 'east'
-        element.src = `./assets/red-character/east.gif`
+        img.src = `./assets/red-character/east.gif`
+        wait(time, callback)
     }
 
-    function walkNorth() {
+    function walkNorth(time, callback) {
         direction = 'north'
-        element.src = `./assets/red-character/north.gif`
+        img.src = `./assets/red-character/north.gif`
+        wait(time, callback)
     }
 
-    function walkWest() {
+    function walkWest(time, callback) {
         direction = 'west'
-        element.src = `./assets/red-character/west.gif`
+        img.src = `./assets/red-character/west.gif`
+        wait(time, callback)
     }
 
-    function walkSouth() {
+    function walkSouth(time, callback) {
         direction = 'south'
-        element.src = `./assets/red-character/south.gif`
+        img.src = `./assets/red-character/south.gif`
+        wait(time, callback)
     }
 
-    function stop() {
+    function stop(time, callback) {
         direction = null
-        element.src = `./assets/red-character/static.gif`
+        img.src = `./assets/red-character/static.gif`
+        wait(time, callback)
     }
 
     return {
-        element: element,
+        img: img,
         walkWest: walkWest,
         walkNorth: walkNorth,
         walkEast: walkEast,
